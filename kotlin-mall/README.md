@@ -1,5 +1,5 @@
 # Shopping Mall App Demo
-----
+
 ## Overview
 * Native Android shopping.
 * Kotlin 1.2.41 and Java 1.8.
