@@ -14,6 +14,7 @@
     <!--<color name="common_purple">#d500f9</color>-->
     <!--<color name="common_red">#f11919</color>-->
     <color name="common_white">#ffffff</color>
+    <color name="common_transparent">#55aaaaaa</color>
     <!--<color name="common_yellow">#fe9c2f</color>-->
 
     <!--<color name="text_dark">#999999</color>-->

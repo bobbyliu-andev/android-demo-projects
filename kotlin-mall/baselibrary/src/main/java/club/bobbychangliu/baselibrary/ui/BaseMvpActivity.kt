@@ -1,5 +1,6 @@
 package club.bobbychangliu.baselibrary.ui
 
+import android.app.Dialog
 import android.os.Bundle
 import club.bobbychangliu.baselibrary.common.BaseApplication
 import club.bobbychangliu.baselibrary.injection.component.ActivityComponent
@@ -8,6 +9,7 @@ import club.bobbychangliu.baselibrary.injection.module.ActivityModule
 import club.bobbychangliu.baselibrary.injection.module.LifecycleProviderModule
 import club.bobbychangliu.baselibrary.presenter.BasePresenter
 import club.bobbychangliu.baselibrary.presenter.BaseView
+import club.bobbychangliu.baselibrary.widgets.ProgressLoading
 import javax.inject.Inject
 
 // *** the use of *
@@ -18,11 +20,15 @@ abstract class BaseMvpActivity<T: BasePresenter<*>> : BaseActivity(), BaseView {
 
     lateinit var activityComponent: ActivityComponent
 
+	lateinit var mLoadingDialog: ProgressLoading
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initActivityInjection()
         injectComponent()
+
+		mLoadingDialog = ProgressLoading.create(this)
     }
 
     private fun initActivityInjection() {
@@ -36,11 +42,11 @@ abstract class BaseMvpActivity<T: BasePresenter<*>> : BaseActivity(), BaseView {
     abstract fun injectComponent()
 
     override fun showLoading() {
-
+		mLoadingDialog.show()
     }
 
     override fun hideLoading() {
-
+		mLoadingDialog.dismiss()
     }
 
     override fun onError() {
