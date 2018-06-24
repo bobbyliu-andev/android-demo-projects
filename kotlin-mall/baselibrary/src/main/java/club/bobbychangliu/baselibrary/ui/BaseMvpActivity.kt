@@ -13,11 +13,8 @@ import javax.inject.Inject
 // *** the use of *
 abstract class BaseMvpActivity<T: BasePresenter<*>> : BaseActivity(), BaseView {
 
-
-
     @Inject
     lateinit var mPresenter: T
-
 
     lateinit var activityComponent: ActivityComponent
 
