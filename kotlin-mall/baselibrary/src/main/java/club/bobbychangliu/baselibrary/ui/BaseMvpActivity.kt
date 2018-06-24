@@ -11,12 +11,13 @@ import club.bobbychangliu.baselibrary.presenter.BaseView
 import javax.inject.Inject
 
 // *** the use of *
-open class BaseMvpActivity<T: BasePresenter<*>> : BaseActivity(), BaseView {
+abstract class BaseMvpActivity<T: BasePresenter<*>> : BaseActivity(), BaseView {
 
 
 
     @Inject
     lateinit var mPresenter: T
+
 
     lateinit var activityComponent: ActivityComponent
 
@@ -24,6 +25,7 @@ open class BaseMvpActivity<T: BasePresenter<*>> : BaseActivity(), BaseView {
         super.onCreate(savedInstanceState)
 
         initActivityInjection()
+        injectComponent()
     }
 
     private fun initActivityInjection() {
@@ -33,6 +35,8 @@ open class BaseMvpActivity<T: BasePresenter<*>> : BaseActivity(), BaseView {
                 .lifecycleProviderModule(LifecycleProviderModule(this))
                 .build()
     }
+
+    abstract fun injectComponent()
 
     override fun showLoading() {
 

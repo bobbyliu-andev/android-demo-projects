@@ -4,5 +4,5 @@ import club.bobbychangliu.baselibrary.presenter.BaseView
 
 interface RegisterView : BaseView {
 
-    fun onRegisterResult(result: Boolean)
+    fun onRegisterResult(result: String)
 }
