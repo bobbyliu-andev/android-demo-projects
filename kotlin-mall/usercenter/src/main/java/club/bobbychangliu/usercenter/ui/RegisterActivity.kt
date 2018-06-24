@@ -1,6 +1,7 @@
 package club.bobbychangliu.usercenter.ui
 
 import android.os.Bundle
+import club.bobbychangliu.baselibrary.common.AppManager
 import club.bobbychangliu.baselibrary.ext.getString
 import club.bobbychangliu.baselibrary.ui.BaseMvpActivity
 import club.bobbychangliu.usercenter.R
@@ -12,6 +13,8 @@ import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.toast
 
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
+
+	private var pressedTime: Long = 0
 
     override fun injectComponent() {
         DaggerUserComponent.builder().activityComponent(activityComponent)
@@ -31,6 +34,15 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         setContentView(R.layout.activity_register)
 
         mBtnRegister.setOnClickListener { mPresenter.register(mEtMobile.getString(), mEtPassword.getString(), mEtVerifyCode.getString())}
-
     }
+
+	override fun onBackPressed() {
+		val time = System.currentTimeMillis()
+		if (time - pressedTime > 2000) {
+			toast("Press again to exit app.")
+			pressedTime = time
+		} else {
+			AppManager.instance.exitApp(this)
+		}
+	}
 }
