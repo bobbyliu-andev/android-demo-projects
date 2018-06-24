@@ -6,9 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".ui.RegisterActivity">
 
-    <android.support.constraint.ConstraintLayout
+    <club.bobbychangliu.baselibrary.widgets.HeaderBar
+        android:id="@+id/mHeaderBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:titleText="@string/register"
+        app:rightText="Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mHeaderBar">
 
         <EditText
             android:id="@+id/mEtMobile"
@@ -55,8 +69,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:hint="Password"
             android:ems="10"
+            android:hint="Password"
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

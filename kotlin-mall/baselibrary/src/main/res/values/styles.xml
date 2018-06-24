@@ -6,6 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="android:textSize">@dimen/text_middle_size</item>-->
+        <!--supposed to remove shadow yet not-->
+        <!--<item name="android:windowContentOverlay">@null</item>-->
+        <!--remove action bar-->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>
