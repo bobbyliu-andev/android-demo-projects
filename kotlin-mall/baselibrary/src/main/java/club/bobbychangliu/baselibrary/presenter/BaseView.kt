@@ -3,5 +3,5 @@ package club.bobbychangliu.baselibrary.presenter
 interface BaseView {
     fun showLoading()
     fun hideLoading()
-    fun onError()
+    fun onError(msg: String)
 }

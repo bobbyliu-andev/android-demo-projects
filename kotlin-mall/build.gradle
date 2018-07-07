@@ -13,6 +13,7 @@ buildscript {
     ext.dagger_version = '2.15'
 
     ext.rx_lifecycle_version = '2.2.1'
+    ext.glide_version = "3.7.0"
 
     repositories {
         google()

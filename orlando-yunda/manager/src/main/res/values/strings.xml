@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">manager</string>
+    <string-array name="agents_array">
+        <item>All</item>
+        <item>iFresh</item>
+        <item>ChuanLu</item>
+    </string-array>
+</resources>

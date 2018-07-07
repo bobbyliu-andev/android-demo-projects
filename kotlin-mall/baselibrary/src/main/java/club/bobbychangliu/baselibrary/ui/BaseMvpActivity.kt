@@ -10,6 +10,7 @@ import club.bobbychangliu.baselibrary.injection.module.LifecycleProviderModule
 import club.bobbychangliu.baselibrary.presenter.BasePresenter
 import club.bobbychangliu.baselibrary.presenter.BaseView
 import club.bobbychangliu.baselibrary.widgets.ProgressLoading
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 // *** the use of *
@@ -49,8 +50,8 @@ abstract class BaseMvpActivity<T: BasePresenter<*>> : BaseActivity(), BaseView {
 		mLoadingDialog.dismiss()
     }
 
-    override fun onError() {
-
+    override fun onError(msg: String) {
+		toast(msg)
     }
 
 }

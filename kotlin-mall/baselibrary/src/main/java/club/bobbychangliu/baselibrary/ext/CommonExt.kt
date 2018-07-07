@@ -1,8 +1,10 @@
 package club.bobbychangliu.baselibrary.ext
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.widget.EditText
+import club.bobbychangliu.baselibrary.common.BaseApplication
 import club.bobbychangliu.baselibrary.rx.BaseSubscriber
 import com.trello.rxlifecycle2.LifecycleProvider
 import io.reactivex.Observable
@@ -54,3 +56,4 @@ fun Context.is3gConnected(): Boolean {
 
 
 fun EditText.getString(): String = text.toString()
+fun EditText.isNotNullOrEmpty(): Boolean = text.isNullOrEmpty().not()

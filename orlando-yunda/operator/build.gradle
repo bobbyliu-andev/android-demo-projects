@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "club.bobbychangliu.orlandoyunda"
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "tier"
+    productFlavors {
+        ifresh {
+            minSdkVersion 21
+            dimension "tier"
+            applicationId 'club.bobbychangliu.orlandoyunda'
+            targetSdkVersion 27
+            versionCode 1
+            versionName '1.0.0'
+        }
+        chuanlu {
+            minSdkVersion 21
+            dimension "tier"
+            applicationId 'club.bobbychangliu.orlandoyunda'
+            targetSdkVersion 27
+            versionCode 1
+            versionName '1.0.1'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':base')
+    implementation 'me.dm7.barcodescanner:zxing:1.9.8'
+}
