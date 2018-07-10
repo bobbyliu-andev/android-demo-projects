@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.ScannerActivity" />
-        <activity android:name=".ui.add.AddOrderActivity"></activity>
+        <activity android:name=".ui.add.AddOrderActivity" />
     </application>
 
 </manifest>

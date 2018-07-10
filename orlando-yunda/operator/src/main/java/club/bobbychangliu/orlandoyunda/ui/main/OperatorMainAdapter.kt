@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import club.bobbychangliu.base.database.Order
+import club.bobbychangliu.base.database.firebase.FirestoreUtil
+import club.bobbychangliu.base.utils.toast
 import club.bobbychangliu.orlandoyunda.R
 import kotlinx.android.synthetic.main.operator_main_cell.view.*
 
@@ -31,6 +33,16 @@ class OperatorMainAdapter(var orders: List<Order>) : RecyclerView.Adapter<Operat
 				mTvPrice.text = "$${order.price}"
 				mTvCreatedTime.text = order.createdAt.toString()
 				mTvMemo.text = order.memo
+				mBtnDelete.setOnClickListener {
+					val id = orders[adapterPosition].id
+					FirestoreUtil.deleteOrder(id) {
+						orders = orders.filter { it.id != id }
+						notifyItemRemoved(adapterPosition)
+					}
+				}
+				mBtnEdit.setOnClickListener {
+					toast("Edit function to be added")
+				}
 			}
 		}
 	}

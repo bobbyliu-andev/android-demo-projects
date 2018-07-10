@@ -1,6 +1,5 @@
 package club.bobbychangliu.base.utils
 
-import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import club.bobbychangliu.base.BaseApplication

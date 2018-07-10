@@ -10,7 +10,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView
 
 class ScannerActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
-	lateinit var mScannerView: ZXingScannerView
+	private lateinit var mScannerView: ZXingScannerView
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)

@@ -2,7 +2,6 @@ package club.bobbychangliu.base
 
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
-import android.view.MenuInflater
 
 abstract class BasePresenter<T: BaseView>(val mView: T)
 

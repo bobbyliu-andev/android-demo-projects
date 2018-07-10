@@ -1,34 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:padding="8dp"
-    android:layout_margin="8dp"
-    android:background="@android:color/darker_gray"
-    android:layout_height="wrap_content">
+<club.bobbychangliu.orlandoyunda.widgets.SwipeRevealLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_gravity="center_vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:dragFromEdge="right">
 
-    <TextView
-        android:id="@+id/mTvBarcode"
-        android:textSize="24sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|end"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/mTvPrice"
-        android:textSize="24sp"
+            <ImageButton
+                android:id="@+id/mBtnEdit"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/ic_edit"
+                android:text="Edit"/>
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <ImageButton
+                android:id="@+id/mBtnDelete"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/ic_delete"
+                android:text="Delete"/>
 
-    <TextView
-        android:id="@+id/mTvCreatedTime"
-        android:textSize="24sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        </LinearLayout>
+    </FrameLayout>
 
-    <TextView
-        android:id="@+id/mTvMemo"
-        android:textSize="24sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:padding="8dp"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:background="@android:color/darker_gray"
+        android:layout_height="wrap_content">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/mTvBarcode"
+            android:textSize="24sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/mTvPrice"
+            android:textSize="24sp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/mTvCreatedTime"
+            android:textSize="24sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/mTvMemo"
+            android:textSize="24sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</club.bobbychangliu.orlandoyunda.widgets.SwipeRevealLayout>

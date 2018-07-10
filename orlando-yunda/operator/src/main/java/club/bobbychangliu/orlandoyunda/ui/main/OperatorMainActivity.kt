@@ -1,7 +1,6 @@
 package club.bobbychangliu.orlandoyunda.ui.main
 
 import android.app.Activity
-import android.app.IntentService
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -10,7 +9,6 @@ import club.bobbychangliu.base.BaseActivity
 import club.bobbychangliu.base.BasePresenter
 import club.bobbychangliu.base.BaseView
 import club.bobbychangliu.base.database.Order
-import club.bobbychangliu.base.database.Agent
 import club.bobbychangliu.base.database.firebase.FireAuth
 import club.bobbychangliu.base.database.firebase.FirestoreUtil
 import club.bobbychangliu.base.utils.toast
@@ -23,8 +21,8 @@ import java.util.*
 
 class OperatorMainActivity : BaseActivity<OperatorPresenter>(), OperatorView {
 
-	var tempCode = ""
-	var mAdapter: OperatorMainAdapter = OperatorMainAdapter(arrayListOf())
+	private var tempCode = ""
+	private var mAdapter: OperatorMainAdapter = OperatorMainAdapter(arrayListOf())
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -115,7 +113,8 @@ class OperatorPresenter(view: OperatorView) : BasePresenter<OperatorView>(view) 
 	// todo: add
 	fun addItem(barcode: String, price: Double, memo: String) {
 		val username = FireAuth.mAgent.name
-		val newOrder = Order(barcode, price, username, Date(), Date(), memo)
+		val id = System.currentTimeMillis().toString()
+		val newOrder = Order(id, barcode, price, username, Date(), Date(), memo)
 
 		FirestoreUtil.saveOrder(newOrder) {
 			orderId ->
@@ -132,7 +131,7 @@ class OperatorPresenter(view: OperatorView) : BasePresenter<OperatorView>(view) 
 
 	fun loadOrders() {
 		// todo: update list
-		FirestoreUtil.loadAllPostedOrders() {
+		FirestoreUtil.loadAllPostedOrders {
 			orders ->
 			mView.updateOrdersList(orders)
 		}
