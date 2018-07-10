@@ -1,9 +1,12 @@
 package club.bobbychangliu.orlandoyunda.ui.main
 
+import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import club.bobbychangliu.base.BaseApplication
 import club.bobbychangliu.base.database.Order
 import club.bobbychangliu.base.database.firebase.FirestoreUtil
 import club.bobbychangliu.base.utils.toast
@@ -34,11 +37,14 @@ class OperatorMainAdapter(var orders: List<Order>) : RecyclerView.Adapter<Operat
 				mTvCreatedTime.text = order.createdAt.toString()
 				mTvMemo.text = order.memo
 				mBtnDelete.setOnClickListener {
-					val id = orders[adapterPosition].id
-					FirestoreUtil.deleteOrder(id) {
-						orders = orders.filter { it.id != id }
-						notifyItemRemoved(adapterPosition)
-					}
+					Snackbar.make(it, "Delete ${order.barcode}?", Snackbar.LENGTH_LONG).setAction("Confirm") {
+						FirestoreUtil.deleteOrder(order.id) {
+							orders = orders.filter { it.id != order.id}
+							notifyItemRemoved(adapterPosition)
+						}
+					}.setActionTextColor(ContextCompat.getColor(BaseApplication.ctx, android.R.color.holo_red_dark))
+							.show()
+					mSrl.close(true)
 				}
 				mBtnEdit.setOnClickListener {
 					toast("Edit function to be added")
