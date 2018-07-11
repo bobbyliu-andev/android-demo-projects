@@ -11,9 +11,11 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import club.bobbychangliu.base.database.Order
 import club.bobbychangliu.base.database.firebase.FirestoreUtil
+import club.bobbychangliu.base.utils.toast
 import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.activity_manager_main.*
 import kotlinx.android.synthetic.main.main_rcv_cell.view.*
+import org.jetbrains.anko.email
 import kotlin.properties.Delegates
 
 class ManagerMainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -31,6 +33,15 @@ class ManagerMainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
 		mRcvOrders.layoutManager = LinearLayoutManager(this)
 		mRcvOrders.adapter = mAdapter
+
+		// send email
+		mFabEmail.setOnClickListener {
+			email(
+					"usayunda.orlando@gmail.com",
+					"AUTO-GENERATED FROM ORLANDO YUNDA - BARCODE SUM UP",
+					AppRepository.instance.getAllBarcode()
+			)
+		}
 	}
 
 	override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
@@ -77,8 +88,10 @@ class OrdersAdapter(private val snapshots: ArrayList<DocumentSnapshot> = arrayLi
 
 		// todo: consider querySnapshot.documentChanges.ADDED, MODIFIED, REMOVED
 		snapshots.clear()
-		querySnapshot?.documents?.forEach {
+		AppRepository.instance.clearOrders()
 
+		querySnapshot?.documents?.forEach {
+			AppRepository.instance.add(it)
 			snapshots.add(it)
 		}
 		notifyDataSetChanged()
@@ -101,6 +114,44 @@ class OrdersAdapter(private val snapshots: ArrayList<DocumentSnapshot> = arrayLi
 			}
 		}
 	}
+}
+
+class AppRepository {
+
+	companion object {
+		val instance: AppRepository by lazy { AppRepository() }
+	}
+
+	val orders = arrayListOf<Order>()
+
+	fun getAllBarcode(): String {
+		var allBarcode = "Total: ${orders.size}\n\n"
+		if (orders.isNotEmpty()) {
+			orders.forEach {
+				allBarcode += "${it.barcode}\n"
+			}
+		} else {
+			toast("No order detected")
+		}
+		return allBarcode
+	}
+
+	fun add(docSnapshot: DocumentSnapshot?) {
+		val order = docSnapshot?.toObject(Order::class.java)
+		if (order == null) {
+			toast("Error: Order found null")
+		} else {
+			orders.add(order!!)
+		}
+	}
+
+	fun clearOrders() {
+		orders.clear()
+	}
+}
+
+fun String.add(addString: String): String {
+	return "$this\n$addString"
 }
 
 object GetQuery {
