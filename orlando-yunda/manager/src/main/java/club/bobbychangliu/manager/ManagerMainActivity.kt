@@ -15,7 +15,9 @@ import club.bobbychangliu.base.utils.toast
 import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.activity_manager_main.*
 import kotlinx.android.synthetic.main.main_rcv_cell.view.*
+import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.email
+import java.net.URL
 import kotlin.properties.Delegates
 
 class ManagerMainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -36,12 +38,28 @@ class ManagerMainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
 		// send email
 		mFabEmail.setOnClickListener {
-			email(
-					"usayunda.orlando@gmail.com",
-					"AUTO-GENERATED FROM ORLANDO YUNDA - BARCODE SUM UP",
-					AppRepository.instance.getAllBarcode()
-			)
+			testFun()
+//			sendEmail()
 		}
+	}
+
+	// todo: DEBUG FUNC
+	fun testFun() {
+		val url = URL("https://us-central1-orlando-yunda.cloudfunctions.net/helloWorld")
+		doAsync {
+			val response = url.readText()
+			runOnUiThread {
+				toast(response)
+			}
+		}
+	}
+
+	fun sendEmail() {
+		email(
+				"usayunda.orlando@gmail.com",
+				"AUTO-GENERATED FROM ORLANDO YUNDA - BARCODE SUM UP",
+				AppRepository.instance.getAllBarcode()
+		)
 	}
 
 	override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
